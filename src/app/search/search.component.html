@@ -1,0 +1,32 @@
+<div class="container">
+  <form (ngSubmit)="searchArticles()">
+    <div>
+      <label for="text">Procure Artigos</label>
+      <input type="text" required [(ngModel)]="query" name='query'>
+      <button type="submit">Pesquisar</button>
+    </div>
+  </form>
+
+  <div *ngIf="articles">
+    <table>
+      <thead>
+        <tr>
+          <th>Resumo</th>
+          <th>Categoria</th>
+          <th>Data</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles">
+          <td>{{ article.snippet }}</td>
+          <td>{{ article.news_desk }}</td>
+          <td>{{ article.pub_date | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            <a href="{{ article.web_url }}" target="_blank">Acesse</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
